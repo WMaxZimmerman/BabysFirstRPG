@@ -4,12 +4,16 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    public float Speed  { get; set; }
+    public float Speed;
+    public int Health;
+    public int Damage;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
 	{
-	    Speed = 0.1f;
+	    //Speed = 0.1f;
+	    //Health = 500;
+	    //Damage = 50;
 	}
 	
 	// Update is called once per frame
@@ -17,6 +21,7 @@ public class Player : MonoBehaviour
 	{
 	    Move();
         Attack();
+        Die();
     }
 
     private void Move()
@@ -43,7 +48,28 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Return))
         {
-            Debug.Log("Attack", gameObject);
+            var enemy = GameObject.FindWithTag("Enemy");
+
+            if (enemy != null)
+            {
+                var target = enemy.transform;
+                var collider = GetComponent<BoxCollider2D>();
+
+                if (collider.IsTouching(target.GetComponent<BoxCollider2D>()))
+                {
+                    Debug.Log("Player Attack", gameObject);
+                    var obj = target.GetComponent<Enemy>();
+                    obj.Health -= Damage;
+                }
+            }
+        }
+    }
+
+    private void Die()
+    {
+        if (Health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
