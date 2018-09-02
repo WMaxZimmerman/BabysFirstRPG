@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class Player : MonoBehaviour
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
 	void Update ()
 	{
 	    Move();
+        Attack();
     }
 
     private void Move()
@@ -34,6 +36,14 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(new Vector3(0, Speed));
+        }
+    }
+
+    private void Attack()
+    {
+        if (Input.GetKey(KeyCode.Return))
+        {
+            Debug.Log("Attack", gameObject);
         }
     }
 }
