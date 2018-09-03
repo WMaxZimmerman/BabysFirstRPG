@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BabysFirstRPG.Game.Game;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace BabysFirstRPG.Game.Models

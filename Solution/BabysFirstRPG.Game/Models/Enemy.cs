@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using BabysFirstRPG.Game.Models;
+using BabysFirstRPG.Game.Game;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace BabysFirstRPG.Game.Game
+namespace BabysFirstRPG.Game.Models
 {
     public class Enemy: Entity
     {

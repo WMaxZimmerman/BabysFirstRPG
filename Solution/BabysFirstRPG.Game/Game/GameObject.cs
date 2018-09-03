@@ -1,13 +1,14 @@
-﻿using BabysFirstRPG.Game.Game;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace BabysFirstRPG.Game.Models
+namespace BabysFirstRPG.Game.Game
 {
     public class GameObject
     {
         public Texture2D Texture { get; set; }
         public Vector2 Position;
+        public int OrientationDegree { get; set; }
         public int Layer { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }
@@ -20,6 +21,7 @@ namespace BabysFirstRPG.Game.Models
             Texture = texture;
             Position = position;
             InitialPos = position;
+            OrientationDegree = 0;
 
             Height = texture.Height;
             Width = texture.Width;
@@ -47,7 +49,35 @@ namespace BabysFirstRPG.Game.Models
 
         public virtual void Draw(ref SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, Color.White);
+            var rotation = GetRotation(OrientationDegree);
+            var origin = GetOrigin(OrientationDegree);
+            spriteBatch.Draw(Texture, Position, null, null, origin, rotation, null, Color.White);
+            //spriteBatch.Draw(Texture, Position, Color.White);
+        }
+
+        private float GetRotation(int degrees)
+        {
+            var radians = degrees / 180f;
+            return (float)(Math.PI * radians);
+        }
+
+        private Vector2 GetOrigin(int degrees)
+        {
+            var radians = degrees / 180f;
+
+            switch (radians)
+            {
+                case 0f:
+                    return Vector2.Zero;
+                case .5f:
+                    return new Vector2(0, Height / 1f);
+                case 1f:
+                    return new Vector2(Width / 1f, Height / 1f);
+                case 1.5f:
+                    return new Vector2(Width / 1f, 0);
+            }
+
+            return Vector2.Zero;
         }
 
         public virtual void Destroy(MainGame game, GameObject sender)

@@ -42,11 +42,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
-    <Compile Include="Game\Enemy.cs" />
+    <Compile Include="Models\Enemy.cs" />
     <Compile Include="Game\MainGame.cs" />
-    <Compile Include="Game\Player.cs" />
+    <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Entity.cs" />
-    <Compile Include="Models\GameObject.cs" />
+    <Compile Include="Game\GameObject.cs" />
     <Compile Include="Models\MapGenerator.cs" />
     <Compile Include="Models\Obstacle.cs" />
     <Compile Include="Program.cs" />

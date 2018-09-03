@@ -50,6 +50,9 @@ namespace BabysFirstRPG.Game.Game
             Textures.Add("Corner", Content.Load<Texture2D>("Corner"));
             Textures.Add("Wall", Content.Load<Texture2D>("Wall"));
             Textures.Add("Floor", Content.Load<Texture2D>("Floor"));
+            Textures.Add("WallTransitionRight", Content.Load<Texture2D>("WallTransitionRight"));
+            Textures.Add("WallTransitionLeft", Content.Load<Texture2D>("WallTransitionLeft"));
+            Textures.Add("FloorTransition", Content.Load<Texture2D>("FloorTransition"));
 
             Fonts = new Dictionary<string, SpriteFont>();
 
