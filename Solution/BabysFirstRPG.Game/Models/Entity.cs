@@ -22,6 +22,7 @@ namespace BabysFirstRPG.Game.Models
         {
             Movement(gameTime, game);
             Attack(gameTime, game);
+            CheckState(gameTime, game);
         }
 
         protected virtual void Movement(GameTime gameTime, MainGame game)
@@ -30,6 +31,11 @@ namespace BabysFirstRPG.Game.Models
         }
 
         protected virtual void Attack(GameTime gameTime, MainGame game)
+        {
+            //Can Be Overriden to do stuff.
+        }
+
+        protected virtual void CheckState(GameTime gameTime, MainGame game)
         {
             //Can Be Overriden to do stuff.
         }

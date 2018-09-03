@@ -14,6 +14,7 @@ namespace BabysFirstRPG.Game.Models
             Layer = 1;
             Health = 500;
             Damage = 50;
+            Range = 32;
         }
 
         protected override void Movement(GameTime gameTime, MainGame game)
@@ -57,6 +58,11 @@ namespace BabysFirstRPG.Game.Models
                     if (IsWithinRange(enemy)) enemy.Health -= Damage;
                 }
             }
+        }
+
+        protected override void CheckState(GameTime gameTime, MainGame game)
+        {
+            if (Health <= 0) IsRemoved = true;
         }
     }
 }
