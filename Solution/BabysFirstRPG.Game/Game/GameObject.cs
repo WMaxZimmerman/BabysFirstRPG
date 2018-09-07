@@ -6,6 +6,7 @@ namespace BabysFirstRPG.Game.Game
 {
     public class GameObject
     {
+        protected Rectangle SpriteRect;
         public Texture2D Texture { get; set; }
         public Vector2 Position;
         public int OrientationDegree { get; set; }

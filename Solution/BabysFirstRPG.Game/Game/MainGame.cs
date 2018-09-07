@@ -52,6 +52,7 @@ namespace BabysFirstRPG.Game.Game
 
             Textures.Add("Player", Content.Load<Texture2D>("Player"));
             Textures.Add("Enemy", Content.Load<Texture2D>("enemy"));
+            Textures.Add("Demon", Content.Load<Texture2D>("Demon"));
             Textures.Add("Corner", Content.Load<Texture2D>("Corner"));
             Textures.Add("Wall", Content.Load<Texture2D>("Wall"));
             Textures.Add("Floor", Content.Load<Texture2D>("Floor"));
@@ -105,7 +106,7 @@ namespace BabysFirstRPG.Game.Game
             {
                 MapGenerator.GenerateMap(this);
 
-                Objects.Add(new Enemy(Textures["Enemy"], new Vector2(32, 32)));
+                Objects.Add(new Enemy(Textures["Demon"], new Vector2(32, 32)));
                 Objects.Add(new Player(Textures["Player"], new Vector2(64, 64)));
             }
         }
