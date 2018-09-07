@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BabysFirstRPG.Game.Models
+namespace BabysFirstRPG.Game.Game
 {
     public class Timer
     {
