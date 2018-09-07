@@ -23,8 +23,8 @@ namespace BabysFirstRPG.Game.Game
             InitialPos = position;
             OrientationDegree = 0;
 
-            Height = texture.Height;
-            Width = texture.Width;
+            Height = MainGame.TileSize;
+            Width = MainGame.TileSize;
 
             Layer = 1;
         }

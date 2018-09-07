@@ -49,7 +49,7 @@
     <Compile Include="Game\GameObject.cs" />
     <Compile Include="Models\MapGenerator.cs" />
     <Compile Include="Models\Obstacle.cs" />
-    <Compile Include="Models\Timer.cs" />
+    <Compile Include="Game\Timer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
