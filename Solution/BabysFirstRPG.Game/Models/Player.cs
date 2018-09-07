@@ -15,13 +15,14 @@ namespace BabysFirstRPG.Game.Models
             Layer = 1;
             Health = 500;
             Damage = 50;
-            Range = 32;
+            Range = MainGame.TileSize / 2;
+
+            AttackTimer = new Timer(1);
         }
 
         protected override void Movement(GameTime gameTime, MainGame game)
         {
-            var currPosX = Position.X;
-            var currPosY = Position.Y;
+            var currentPosition = Position;
 
             if (game.Inputs.IsKeyDown(Keys.Left))
             {
@@ -44,33 +45,20 @@ namespace BabysFirstRPG.Game.Models
             {
                 if (CollidesWith(obstacle))
                 {
-                    Position.X = currPosX;
-                    Position.Y = currPosY;
+                    Position = currentPosition;
                 }
             }
 
-            MoveCamera(game);
-        }
-
-        private void MoveCamera(MainGame game)
-        {
-            var width = 1600;
-            var height = 960;
-            var offset = 0;
-
-            var x = -Position.X + (width / 4);
-            var y = -Position.Y + (height / 4);
-            
-            game.WorldX = x;
-            game.WorldY = y;
-
-            //game.GraphicsDevice.Viewport = new Viewport((int)Position.X, (int)Position.Y, width, height);
+            game.CenterCamera(this);
         }
 
         protected override void Attack(GameTime gameTime, MainGame game)
         {
-            if (game.Inputs.IsKeyDown(Keys.Space))
+            AttackTimer.Increment(gameTime.ElapsedGameTime);
+
+            if (game.Inputs.IsKeyDown(Keys.Space) && AttackTimer.IsReady)
             {
+                AttackTimer.Reset();
                 foreach (var enemy in game.Objects.OfType<Enemy>())
                 {
                     if (IsWithinRange(enemy)) enemy.Health -= Damage;

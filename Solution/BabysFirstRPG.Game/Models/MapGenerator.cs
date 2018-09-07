@@ -7,8 +7,6 @@ namespace BabysFirstRPG.Game.Models
 {
     public class MapGenerator
     {
-        private static int _tileSize = 32;
-
         public static void GenerateMap(MainGame game)
         {
             var map = LevelOne();
@@ -100,11 +98,11 @@ namespace BabysFirstRPG.Game.Models
 
                     if (isObstacle)
                     {
-                        game.Objects.Add(new Obstacle(texture, new Vector2(posX * _tileSize, posY * _tileSize)){ OrientationDegree = orientation});
+                        game.Objects.Add(new Obstacle(texture, new Vector2(posX * MainGame.TileSize, posY * MainGame.TileSize)){ OrientationDegree = orientation});
                     }
                     else
                     {
-                        game.Objects.Add(new GameObject(texture, new Vector2(posX * _tileSize, posY * _tileSize)) { Layer = 0, OrientationDegree = orientation });
+                        game.Objects.Add(new GameObject(texture, new Vector2(posX * MainGame.TileSize, posY * MainGame.TileSize)) { Layer = 0, OrientationDegree = orientation });
                     }
 
                     posX++;

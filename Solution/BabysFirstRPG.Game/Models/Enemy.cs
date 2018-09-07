@@ -14,7 +14,7 @@ namespace BabysFirstRPG.Game.Models
             Velocity = 1;
             Health = 100;
             Damage = 1;
-            Range = 16;
+            Range = MainGame.TileSize / 4;
         }
 
         protected override void Movement(GameTime gameTime, MainGame game)

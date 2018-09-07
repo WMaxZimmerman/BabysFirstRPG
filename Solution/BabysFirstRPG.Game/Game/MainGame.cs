@@ -21,6 +21,7 @@ namespace BabysFirstRPG.Game.Game
 
         public float WorldX { get; set; }
         public float WorldY { get; set; }
+        public static int TileSize { get; set; }
 
         private bool _sceneSwitched;
         private int _newScene;
@@ -29,10 +30,11 @@ namespace BabysFirstRPG.Game.Game
 
         public MainGame()
         {
+            TileSize = 32;
             _graphics = new GraphicsDeviceManager(this);
             Objects = new List<GameObject>();
             Content.RootDirectory = "Content";
-            //graphics.IsFullScreen = true;
+            //_graphics.IsFullScreen = true;
         }
 
         protected override void Initialize()
@@ -106,6 +108,19 @@ namespace BabysFirstRPG.Game.Game
                 Objects.Add(new Enemy(Textures["Enemy"], new Vector2(32, 32)));
                 Objects.Add(new Player(Textures["Player"], new Vector2(64, 64)));
             }
+        }
+
+        public void CenterCamera(GameObject obj)
+        {
+            var width = GraphicsDevice.Viewport.Width;
+            var height = GraphicsDevice.Viewport.Height;
+            var offset = TileSize / 2;
+
+            var x = -obj.Position.X + ((width / 2) - offset);
+            var y = -obj.Position.Y + ((height / 2) - offset);
+
+            WorldX = x;
+            WorldY = y;
         }
 
         public void AddObject(GameObject newObject)
