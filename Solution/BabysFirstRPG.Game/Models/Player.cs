@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using BabysFirstRPG.Game.Game;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -47,6 +48,23 @@ namespace BabysFirstRPG.Game.Models
                     Position.Y = currPosY;
                 }
             }
+
+            MoveCamera(game);
+        }
+
+        private void MoveCamera(MainGame game)
+        {
+            var width = 1600;
+            var height = 960;
+            var offset = 0;
+
+            var x = -Position.X + (width / 4);
+            var y = -Position.Y + (height / 4);
+            
+            game.WorldX = x;
+            game.WorldY = y;
+
+            //game.GraphicsDevice.Viewport = new Viewport((int)Position.X, (int)Position.Y, width, height);
         }
 
         protected override void Attack(GameTime gameTime, MainGame game)

@@ -19,6 +19,9 @@ namespace BabysFirstRPG.Game.Game
         public KeyboardState Inputs { get; set; }
         public int Level { get; set; }
 
+        public float WorldX { get; set; }
+        public float WorldY { get; set; }
+
         private bool _sceneSwitched;
         private int _newScene;
 
@@ -114,9 +117,11 @@ namespace BabysFirstRPG.Game.Game
         {
             var layers = Objects.Select(o => o.Layer).Distinct();
 
+            GraphicsDevice.Clear(Color.Black);
+
             foreach (var layer in layers.OrderBy(l => l))
             {
-                _spriteBatch.Begin(SpriteSortMode.BackToFront);
+                _spriteBatch.Begin(SpriteSortMode.BackToFront, null, null, null, null, null, Matrix.CreateTranslation(WorldX, WorldY, 0));
 
                 foreach (var gameObject in Objects.Where(o => o.Layer == layer))
                 {
