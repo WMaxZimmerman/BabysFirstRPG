@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using BabysFirstRPG.Game.Game;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,11 +8,6 @@ namespace BabysFirstRPG.Game.Models
 {
     public class Player: Entity
     {
-        private readonly Animation _walkLeft;
-        private readonly Animation _walkRight;
-        private readonly Animation _walkUp;
-        private readonly Animation _walkDown;
-
         public Player(Texture2D texture, Vector2 position) : base(texture, position)
         {
             Velocity = 4;
@@ -24,17 +18,12 @@ namespace BabysFirstRPG.Game.Models
             
             AttackTimer = new Timer(1);
 
-            _walkLeft = new Animation {Row = 2};
-            _walkRight = new Animation {Row = 3};
-            _walkUp = new Animation {Row = 4};
-            _walkDown = new Animation {Row = 1};
+            Animations.Add("WalkLeft", new Animation { Row = 2 });
+            Animations.Add("WalkRight", new Animation { Row = 3 });
+            Animations.Add("WalkUp", new Animation { Row = 4 });
+            Animations.Add("WalkDown", new Animation { Row = 1 });
 
             SpriteRect = new Rectangle((2 * Width) - Width, (1 * Height) - Height, Width, Height);
-        }
-
-        public override void Draw(ref SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, Position, SpriteRect, Color.White);
         }
 
         protected override void Movement(GameTime gameTime, MainGame game)
@@ -43,27 +32,23 @@ namespace BabysFirstRPG.Game.Models
             
             if (game.Inputs.IsKeyDown(Keys.Down))
             {
-                //Direction = 1;
                 Position.Y = Position.Y + Velocity;
-                SpriteRect = _walkDown.Play(gameTime);
+                SpriteRect = Animations["WalkDown"].Play(gameTime);
             }
             else if (game.Inputs.IsKeyDown(Keys.Left))
             {
-                //Direction = 2;
                 Position.X = Position.X - Velocity;
-                SpriteRect = _walkLeft.Play(gameTime);
+                SpriteRect = Animations["WalkLeft"].Play(gameTime);
             }
             else if (game.Inputs.IsKeyDown(Keys.Up))
             {
-                //Direction = 4;
                 Position.Y = Position.Y - Velocity;
-                SpriteRect = _walkUp.Play(gameTime);
+                SpriteRect = Animations["WalkUp"].Play(gameTime);
             }
             else if (game.Inputs.IsKeyDown(Keys.Right))
             {
-                //Direction = 3;
                 Position.X = Position.X + Velocity;
-                SpriteRect = _walkRight.Play(gameTime);
+                SpriteRect = Animations["WalkRight"].Play(gameTime);
             }
 
             foreach (var obstacle in game.Objects.OfType<Obstacle>())

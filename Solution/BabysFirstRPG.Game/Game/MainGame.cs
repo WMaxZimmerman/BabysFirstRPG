@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BabysFirstRPG.Game.Models;
 using Microsoft.Xna.Framework;
@@ -21,15 +22,19 @@ namespace BabysFirstRPG.Game.Game
 
         public float WorldX { get; set; }
         public float WorldY { get; set; }
-        public static int TileSize { get; set; }
 
         private bool _sceneSwitched;
         private int _newScene;
+
+
+        public static int TileSize { get; set; }
+        public static Random Rand { get; set; }
 
         private List<GameObject> _newObjects = new List<GameObject>();
 
         public MainGame()
         {
+            Rand = new Random();
             TileSize = 32;
             _graphics = new GraphicsDeviceManager(this);
             Objects = new List<GameObject>();
@@ -106,7 +111,7 @@ namespace BabysFirstRPG.Game.Game
             {
                 MapGenerator.GenerateMap(this);
 
-                Objects.Add(new Enemy(Textures["Demon"], new Vector2(32, 32)));
+                Objects.Add(new Npc(Textures["Demon"], new Vector2(32, 32)));
                 Objects.Add(new Player(Textures["Player"], new Vector2(64, 64)));
             }
         }

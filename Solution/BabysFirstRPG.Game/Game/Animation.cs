@@ -28,11 +28,7 @@ namespace BabysFirstRPG.Game.Game
             if (AnimTimer.IsReady)
             {
                 CurrentFrame += SpriteDirection;
-                if (CurrentFrame >= 3)
-                {
-                    SpriteDirection *= -1;
-                }
-                else if (CurrentFrame <= 1)
+                if (CurrentFrame >= 3 || CurrentFrame <= 1)
                 {
                     SpriteDirection *= -1;
                 }

@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace BabysFirstRPG.Game.Models
 {
-    public class Entity: GameObject
+    public class Entity: Sprite
     {
         public int Velocity { get; set; }
         public int Health { get; set; }

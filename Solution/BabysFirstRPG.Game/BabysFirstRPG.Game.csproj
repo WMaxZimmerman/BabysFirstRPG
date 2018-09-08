@@ -41,10 +41,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Enums\Direction.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Game\Animation.cs" />
+    <Compile Include="Game\Sprite.cs" />
     <Compile Include="Models\Enemy.cs" />
     <Compile Include="Game\MainGame.cs" />
+    <Compile Include="Models\Npc.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Game\GameObject.cs" />

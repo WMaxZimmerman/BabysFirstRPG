@@ -6,7 +6,6 @@ namespace BabysFirstRPG.Game.Game
 {
     public class GameObject
     {
-        protected Rectangle SpriteRect;
         public Texture2D Texture { get; set; }
         public Vector2 Position;
         public int OrientationDegree { get; set; }
@@ -56,13 +55,13 @@ namespace BabysFirstRPG.Game.Game
             //spriteBatch.Draw(Texture, Position, Color.White);
         }
 
-        private float GetRotation(int degrees)
+        protected float GetRotation(int degrees)
         {
             var radians = degrees / 180f;
             return (float)(Math.PI * radians);
         }
 
-        private Vector2 GetOrigin(int degrees)
+        protected Vector2 GetOrigin(int degrees)
         {
             var radians = degrees / 180f;
 
@@ -79,6 +78,11 @@ namespace BabysFirstRPG.Game.Game
             }
 
             return Vector2.Zero;
+        }
+
+        public Rectangle GetRect()
+        {
+            return new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
         }
 
         public virtual void Destroy(MainGame game, GameObject sender)
