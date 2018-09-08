@@ -56,6 +56,7 @@
     <Compile Include="Models\MapGenerator.cs" />
     <Compile Include="Models\Obstacle.cs" />
     <Compile Include="Game\Timer.cs" />
+    <Compile Include="Models\UiElement.cs" />
     <Compile Include="Models\UiText.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

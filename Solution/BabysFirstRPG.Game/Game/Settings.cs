@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
-namespace Babysi9oFirstRPG.Game.Game
+namespace BabysFirstRPG.Game.Game
 {
     public static class Settings
     {
-        public static string Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private const string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        public static List<char> Alphabet => _alphabet.Select(a => a).ToList();
     }
 }

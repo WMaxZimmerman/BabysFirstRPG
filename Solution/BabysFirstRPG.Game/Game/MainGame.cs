@@ -115,11 +115,11 @@ namespace BabysFirstRPG.Game.Game
                 Objects.Add(new Npc(Textures["Demon"], new Vector2(32, 32)));
                 Objects.Add(new Player(Textures["Player"], new Vector2(64, 64)));
 
-                WriteText("HELLO", new Vector2(-32, -32));
+                WriteText("HELLO", new Vector2(32, 32));
             }
         }
 
-        private void WriteText(string text, Vector2 position)
+        public void WriteText(string text, Vector2 position)
         {
             var posX = position.X;
             var posY = position.Y;
