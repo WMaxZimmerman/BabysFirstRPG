@@ -64,6 +64,7 @@ namespace BabysFirstRPG.Game.Game
             Textures.Add("WallTransitionRight", Content.Load<Texture2D>("WallTransitionRight"));
             Textures.Add("WallTransitionLeft", Content.Load<Texture2D>("WallTransitionLeft"));
             Textures.Add("FloorTransition", Content.Load<Texture2D>("FloorTransition"));
+            Textures.Add("Alphabet", Content.Load<Texture2D>("alphaBetIWontHitEm"));
 
             Fonts = new Dictionary<string, SpriteFont>();
 
@@ -113,6 +114,20 @@ namespace BabysFirstRPG.Game.Game
 
                 Objects.Add(new Npc(Textures["Demon"], new Vector2(32, 32)));
                 Objects.Add(new Player(Textures["Player"], new Vector2(64, 64)));
+
+                WriteText("HELLO", new Vector2(-32, -32));
+            }
+        }
+
+        private void WriteText(string text, Vector2 position)
+        {
+            var posX = position.X;
+            var posY = position.Y;
+
+            foreach (var letter in text)
+            {
+                Objects.Add(new Letter(Textures["Alphabet"], new Vector2(posX, posY), letter));
+                posX += 10;
             }
         }
 
