@@ -11,6 +11,7 @@ namespace BabysFirstRPG.Game.Models
         public UiElement(Texture2D texture, Vector2 position) : base(texture, position)
         {
             _relativePosition = position;
+            Layer = 2;
         }
 
         public override void Update(GameTime gameTime, MainGame game)
