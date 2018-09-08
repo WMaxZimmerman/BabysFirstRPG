@@ -11,7 +11,7 @@ namespace BabysFirstRPG.Game.Models
 
         public Letter(Texture2D texture, Vector2 position, char letter) : base(texture, position)
         {
-            Layer = 2;
+            Layer = 3;
             Width = 10;
             Height = 12;
             Text = letter;
