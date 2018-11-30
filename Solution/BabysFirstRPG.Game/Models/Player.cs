@@ -74,6 +74,14 @@ namespace BabysFirstRPG.Game.Models
                     if (IsWithinRange(enemy)) enemy.Health -= Damage;
                 }
             }
+	    else if (game.Inputs.IsKeyDown(Keys.E) && AttackTimer.IsReady)
+	    {
+		var npc = game.Objects.OfType<Npc>().FirstOrDefault(n => IsWithinRange(n));
+		if (npc != null)
+		{
+		    npc.Interact();
+		}
+	    }
         }
 
         protected override void CheckState(GameTime gameTime, MainGame game)

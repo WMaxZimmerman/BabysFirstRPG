@@ -124,9 +124,14 @@ namespace BabysFirstRPG.Game.Game
             var posX = position.X;
             var posY = position.Y;
 
+            foreach (var letter in Objects.OfType<Letter>())
+            {
+                letter.IsRemoved = true;
+            }
+
             foreach (var letter in text)
             {
-                Objects.Add(new Letter(Textures["Alphabet"], new Vector2(posX, posY), letter));
+                AddObject(new Letter(Textures["Alphabet"], new Vector2(posX, posY), letter));
                 posX += 10;
             }
         }

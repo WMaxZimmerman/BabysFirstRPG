@@ -12,6 +12,7 @@ namespace BabysFirstRPG.Game.Models
     {
         private Direction _direction;
         private Rectangle _bounds;
+	private bool _interacting;
 
         public Npc(Texture2D texture, Vector2 position) : base(texture, position)
         {
@@ -33,7 +34,14 @@ namespace BabysFirstRPG.Game.Models
 
         protected override void Movement(GameTime gameTime, MainGame game)
         {
-            Wander(gameTime, game);
+	    if (_interacting)
+	    {
+		game.WriteText("THE FUCK YOU WANT", new Vector2(32, 32));
+	    }
+	    else
+	    {
+		Wander(gameTime, game);	
+	    }
         }
 
         private void Wander(GameTime gameTime, MainGame game)
@@ -113,5 +121,10 @@ namespace BabysFirstRPG.Game.Models
         {
             if (Health <= 0) IsRemoved = true;
         }
+
+	public void Interact()
+	{
+	    _interacting = !_interacting;
+	}
     }
 }
