@@ -12,12 +12,14 @@ namespace BabysFirstRPG.Game.Models
         public int Damage { get; set; }
         public int Range { get; set; }
         public Timer AttackTimer { get; set; }
+        public Timer InteractTimer { get; set; }
 
         public Entity(Texture2D texture, Vector2 position) : base(texture, position)
         {
             Layer = 1;
             Range = 1;
             AttackTimer = new Timer(1);
+            InteractTimer = new Timer(1);
         }
 
         public override void Update(GameTime gameTime, MainGame game)

@@ -12,7 +12,7 @@ namespace BabysFirstRPG.Game.Models
     {
         private Direction _direction;
         private Rectangle _bounds;
-	private bool _interacting;
+	    private bool _interacting;
 
         public Npc(Texture2D texture, Vector2 position) : base(texture, position)
         {
@@ -30,18 +30,17 @@ namespace BabysFirstRPG.Game.Models
             _bounds = new Rectangle(0, 0, 320, 320);
 
             SpriteRect = new Rectangle((2 * Width) - Width, (1 * Height) - Height, Width, Height);
+            InteractTimer = new Timer(1);
         }
 
         protected override void Movement(GameTime gameTime, MainGame game)
         {
-	    if (_interacting)
-	    {
-		game.WriteText("THE FUCK YOU WANT", new Vector2(32, 32));
-	    }
-	    else
-	    {
-		Wander(gameTime, game);	
-	    }
+            InteractTimer.Increment(gameTime.ElapsedGameTime);
+
+            if (!_interacting)
+	        {
+	            Wander(gameTime, game);
+	        }
         }
 
         private void Wander(GameTime gameTime, MainGame game)
@@ -122,9 +121,14 @@ namespace BabysFirstRPG.Game.Models
             if (Health <= 0) IsRemoved = true;
         }
 
-	public void Interact()
-	{
-	    _interacting = !_interacting;
-	}
+	    public void Interact(MainGame game)
+	    {
+	        if (InteractTimer.IsReady)
+	        {
+	            _interacting = !_interacting;
+	            InteractTimer.Reset();
+	            game.WriteText("THE FUCK YOU WANT.", new Vector2(32, 32));
+            }
+	    }
     }
 }

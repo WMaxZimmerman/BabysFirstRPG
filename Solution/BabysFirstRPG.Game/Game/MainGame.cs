@@ -83,15 +83,15 @@ namespace BabysFirstRPG.Game.Game
         {
             Inputs = Keyboard.GetState();
 
+            Objects.AddRange(_newObjects);
+            _newObjects = new List<GameObject>();
+
             foreach (var gameObject in Objects)
             {
                 gameObject.Update(gameTime, this);
             }
 
             Objects.RemoveAll(o => o.IsRemoved);
-
-            Objects.AddRange(_newObjects);
-            _newObjects = new List<GameObject>();
 
             if (_sceneSwitched) SceneSwitch();
         }
