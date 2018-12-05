@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using BabysFirstRPG.Game.Game;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,6 +10,8 @@ namespace BabysFirstRPG.Game.Models
 {
     public class Player: Entity
     {
+        private List<Item> _inventroy;
+
         public Player(Texture2D texture, Vector2 position) : base(texture, position)
         {
             Velocity = 4;
@@ -24,6 +28,7 @@ namespace BabysFirstRPG.Game.Models
             Animations.Add("WalkDown", new Animation { Row = 1 });
 
             SpriteRect = new Rectangle((2 * Width) - Width, (1 * Height) - Height, Width, Height);
+            _inventroy = new List<Item>();
         }
 
         protected override void Movement(GameTime gameTime, MainGame game)
@@ -69,9 +74,15 @@ namespace BabysFirstRPG.Game.Models
             if (game.Inputs.IsKeyDown(Keys.Space) && AttackTimer.IsReady)
             {
                 AttackTimer.Reset();
+                var dmg = _inventroy.OfType<Weapon>().Where(w => w.IsEquiped).Sum(w => w.Damage);
+                if (dmg < Damage)
+                {
+                    dmg = Damage;
+                }
+
                 foreach (var enemy in game.Objects.OfType<Enemy>())
                 {
-                    if (IsWithinRange(enemy)) enemy.Health -= Damage;
+                    if (IsWithinRange(enemy)) enemy.Health -= dmg;
                 }
             }
 	        else if (game.Inputs.IsKeyDown(Keys.E) && AttackTimer.IsReady)
@@ -82,6 +93,21 @@ namespace BabysFirstRPG.Game.Models
 		            npc.Interact(game);
 		        }
 	        }
+        }
+
+        public override bool IsWithinRange(GameObject obj)
+        {
+            var deltaX = Math.Abs(Position.X - obj.Position.X);
+            var deltaY = Math.Abs(Position.Y - obj.Position.Y);
+
+            var distance = Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
+            var rng = _inventroy.OfType<Weapon>().Where(w => w.IsEquiped).Max(w => w.Range);
+            if (rng < Range)
+            {
+                rng = Range;
+            }
+
+            return distance < rng;
         }
 
         protected override void CheckState(GameTime gameTime, MainGame game)

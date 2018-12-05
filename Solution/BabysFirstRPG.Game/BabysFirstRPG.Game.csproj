@@ -48,6 +48,7 @@
     <Compile Include="Game\Sprite.cs" />
     <Compile Include="Models\Enemy.cs" />
     <Compile Include="Game\MainGame.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Letter.cs" />
     <Compile Include="Models\Npc.cs" />
     <Compile Include="Models\Player.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Game\Timer.cs" />
     <Compile Include="Models\UiElement.cs" />
     <Compile Include="Models\UiText.cs" />
+    <Compile Include="Models\Weaponcs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
